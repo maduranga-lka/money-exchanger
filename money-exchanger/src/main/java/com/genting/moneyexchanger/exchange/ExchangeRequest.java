@@ -1,5 +1,8 @@
 package com.genting.moneyexchanger.exchange;
 
+/**
+ * <p>This class carries Exchange request data</p>
+ */
 public class ExchangeRequest {
     private String currency;
     private double buyRate;

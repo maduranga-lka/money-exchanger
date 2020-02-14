@@ -10,15 +10,23 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * <p>Controller class which consists with <b>Exchange</b> related REST operations</p>
+ */
 @RestController
 public class ExchangeController {
 
     public static final String MESSAGE = "";
+    public static final String SELLING_AMOUNT_URI = "/exchanges/sell/{currencyCode}/{amount}";
+    public static final String BUYING_AMOUNT_URI = "/exchanges/buy/{currencyCode}/{amount}";
+    public static final String RET_ALL_TRANSACTIONS_URI = "/exchanges/transactions";
+    public static final String NEW_TRANSACTION_URI = "/exchanges/transactions/{currencyCode}/{amount}";
+    public static final String ID = "/{id}";
 
     @Autowired
     private ExchangeService exchangeService;
 
-    @GetMapping(path = "/exchanges/sell/{currencyCode}/{amount}")
+    @GetMapping(path = SELLING_AMOUNT_URI)
     public ExchangeRate getSellingAmount(@PathVariable String currencyCode, @PathVariable double amount) {
         ExchangeRate exchangeRate = exchangeService.findSellAmountDetailsByCurrencyCode(currencyCode, amount);
 
@@ -28,7 +36,7 @@ public class ExchangeController {
         return exchangeRate;
     }
 
-    @GetMapping(path = "/exchanges/buy/{currencyCode}/{amount}")
+    @GetMapping(path = BUYING_AMOUNT_URI)
     public ExchangeRate getBuyingAmount(@PathVariable String currencyCode, @PathVariable double amount) {
         ExchangeRate exchangeRate = exchangeService.findBuyAmountDetailsByCurrencyCode(currencyCode, amount);
 
@@ -38,7 +46,7 @@ public class ExchangeController {
         return exchangeRate;
     }
 
-    @GetMapping(path = "/exchanges/transactions")
+    @GetMapping(path = RET_ALL_TRANSACTIONS_URI)
     public List<ExchangeTransaction> getAllTransactions() {
         List<ExchangeTransaction> exchangeTransactions = exchangeService.getAllTransactions();
 
@@ -50,12 +58,12 @@ public class ExchangeController {
     }
 
 
-    @PostMapping(path = "/exchanges/transactions/{currencyCode}/{amount}")
+    @PostMapping(path = NEW_TRANSACTION_URI)
     public ResponseEntity addTransaction(@Valid @RequestBody ExchangeRequest exchangeRequest, @PathVariable String currencyCode, @PathVariable double amount) {
         ExchangeTransaction newTransaction = exchangeService.addTransaction(exchangeRequest, amount, currencyCode);
 
         if (newTransaction.getTransactionId() > 0) {
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newTransaction.getTransactionId()).toUri();
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(ID).buildAndExpand(newTransaction.getTransactionId()).toUri();
             return ResponseEntity.created(uri).build();
         }
 

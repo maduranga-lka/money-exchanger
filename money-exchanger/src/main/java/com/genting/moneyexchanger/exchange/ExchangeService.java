@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * <p>Service class for keeping <b>Exchange</b> related functionality</p>
+ */
 @Service
 public class ExchangeService {
 
@@ -20,18 +23,45 @@ public class ExchangeService {
     @Autowired
     private ExchangeRepository exchangeRepository;
 
+    /**
+     * Finds selling amount for the currency and code
+     * and amount passed to the respective REST service
+     *
+     * @param currencyCode currency code
+     * @param amountToExchange amount which needs to be exchanged
+     * @return exchange details
+     */
     public ExchangeRate findSellAmountDetailsByCurrencyCode(String currencyCode, double amountToExchange) {
 
         return findExchangeAmount(currencyCode, amountToExchange, SELL);  //from SGD
 
     }
 
+    /**
+     * Finds buying amount for the currency and code
+     * and amount passed to the respective REST service
+     *
+     * @param currencyCode currency code
+     * @param amountToExchange amount which needs to be exchanged
+     * @return exchange details
+     */
     public ExchangeRate findBuyAmountDetailsByCurrencyCode(String currencyCode, double amountToExchange) {
 
         return findExchangeAmount(currencyCode, amountToExchange, BUY);
 
     }
 
+    /**
+     * This method gets the currency code and the amount to be converted in
+     * then retrieves the applicable exchange rate from the respective
+     * repository service then based on the exchange type, calculates the exchanged
+     * amount
+     *
+     * @param currencyCode currency code
+     * @param amountToExchange amount which needs to be exchanged
+     * @param exchangeType {@code BUY} or {@code SELL}
+     * @return exchange details
+     */
     private ExchangeRate findExchangeAmount(String currencyCode, double amountToExchange, String exchangeType) {
         Currency currency = rateRepository.getExchangeRateByCurrency(currencyCode);
         if (currency != null) {
@@ -55,6 +85,17 @@ public class ExchangeService {
         return buildNilExchangeResponse();
     }
 
+    /**
+     * Builds the {@link ExchangeRate} object with
+     * given details
+     *
+     * @param fromCurrency currency to be converted to
+     * @param toCurrency currency after converting
+     * @param amountToExchange amount to be converted to
+     * @param currency currency details
+     * @param amountAfterExchanged amount after converting
+     * @return exchange rate details
+     */
     private ExchangeRate buildExchangeResponse(String fromCurrency, String toCurrency, double amountToExchange, Currency currency, double amountAfterExchanged) {
         ExchangeRate exchangeRate = new ExchangeRate();
         exchangeRate.setSellRate(currency.getSellRate());
@@ -67,12 +108,26 @@ public class ExchangeService {
         return exchangeRate;
     }
 
+    /**
+     * Builds {@link ExchangeRate} when details are
+     * not found ~ null object pattern
+     *
+     * @return exchange rate details
+     */
     private ExchangeRate buildNilExchangeResponse() {
         ExchangeRate exchangeRate = new ExchangeRate();
         exchangeRate.setNil(true);
         return exchangeRate;
     }
 
+    /**
+     * Builds the transaction object and saves in the database
+     *
+     * @param exchangeRequest exchange request
+     * @param amountToExchange amount to be converted to
+     * @param currencyCode currency code
+     * @return transaction details after saving
+     */
     public ExchangeTransaction addTransaction(ExchangeRequest exchangeRequest, double amountToExchange, String currencyCode) {
         ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
         exchangeTransaction.setSellRate(exchangeRequest.getSellRate());
@@ -91,12 +146,24 @@ public class ExchangeService {
         }
     }
 
+    /**
+     * Retrieves all the transaction details using the
+     * respective repository
+     *
+     * @return all the transactions
+     */
     protected List<ExchangeTransaction> getAllTransactions() {
 
         return exchangeRepository.getAllTransactions();
 
     }
 
+    /**
+     * Builds {@link ExchangeTransaction} when details are
+     * not found ~ null object pattern
+     *
+     * @return transaction details after saving
+     */
     private ExchangeTransaction buildNilExchangeTransactionResponse() {
         ExchangeTransaction exchangeTransaction = new ExchangeTransaction();
         exchangeTransaction.setNil(true);

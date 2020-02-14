@@ -3,6 +3,9 @@ package com.genting.moneyexchanger.exchange;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>Helper class that stores currency transaction data</p>
+ */
 public class ExchangeTransactionData {
 
     private static List<ExchangeTransaction> exchangeTransactions;

@@ -2,6 +2,10 @@ package com.genting.moneyexchanger.exchange;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * <p>Currency transaction properties which should be persisted
+ * are maintained in the class</p>
+ */
 public class ExchangeTransaction {
 
     private Long transactionId;
