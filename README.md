@@ -8,10 +8,10 @@
 
 **Request Sample :**   
 {  
-   "currency":"USD",  
-   "buyRate":"1.1",  
-   "sellRate":"1.1",  
-   "amount":"1000"  
+   &nbsp;"currency":"USD",  
+   &nbsp;"buyRate":"1.1",  
+   &nbsp;"sellRate":"1.1",  
+   &nbsp;"amount":"1000"  
 }      
 
 **Get All Exchange Transactions** : /moneyexchanger/exchanges/transactions       
