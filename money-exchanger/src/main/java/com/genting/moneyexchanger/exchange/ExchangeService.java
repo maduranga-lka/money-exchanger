@@ -2,6 +2,7 @@ package com.genting.moneyexchanger.exchange;
 
 import com.genting.moneyexchanger.rate.RateRepository;
 import com.genting.moneyexchanger.domain.Currency;
+import com.genting.moneyexchanger.util.RateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +80,7 @@ public class ExchangeService {
             } else {
                 return buildNilExchangeResponse();
             }
-            return buildExchangeResponse(fromCurrency, toCurrency, amountToExchange, currency, exchangeAmount);
+            return buildExchangeResponse(fromCurrency, toCurrency, amountToExchange, currency, RateHelper.formatAmount(exchangeAmount));
         }
 
         return buildNilExchangeResponse();

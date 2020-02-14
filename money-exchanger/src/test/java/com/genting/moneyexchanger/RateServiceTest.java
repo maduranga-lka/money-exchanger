@@ -30,7 +30,7 @@ public class RateServiceTest {
         Currency currency = new Currency(currencyCode,1.1,2.2);
         when(rateRepository.getExchangeRateByCurrency(anyString())).thenReturn(currency);
         Currency currencyResult = rateRepository.getExchangeRateByCurrency(currencyCode);
-        Assert.assertEquals(currencyCode,currencyResult.getCurrency());
+        Assert.assertEquals(currencyCode,currencyResult.getCurrencyCode());
         Assert.assertEquals(1.1,currencyResult.getBuyRate(),0);
         Assert.assertEquals(2.2,currencyResult.getSellRate(),0);
     }
