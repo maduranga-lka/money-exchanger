@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class ExchangeTransactionData {
 
+    private ExchangeTransactionData() {
+    }
+
     private static List<ExchangeTransaction> exchangeTransactions;
 
     static {
@@ -19,7 +22,7 @@ public class ExchangeTransactionData {
     }
 
     public static Long addTransaction(ExchangeTransaction exchangeTransaction) {
-        Long transactionId = new Long(exchangeTransactions.size() + 1);
+        Long transactionId = Long.valueOf(exchangeTransactions.size() + 1);
         exchangeTransaction.setTransactionId(transactionId);
         if (exchangeTransactions.add(exchangeTransaction)) {
             return transactionId;

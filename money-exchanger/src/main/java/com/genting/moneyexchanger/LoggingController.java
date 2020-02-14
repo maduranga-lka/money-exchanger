@@ -2,7 +2,7 @@ package com.genting.moneyexchanger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +16,7 @@ public class LoggingController {
     public static final String LOGS_URI = "/logs";
     Logger logger = LoggerFactory.getLogger(LoggingController.class);
 
-    @RequestMapping(LOGS_URI)
+    @GetMapping(LOGS_URI)
     public String index() {
         logger.trace(TRACE);
         logger.debug(DEBUG);

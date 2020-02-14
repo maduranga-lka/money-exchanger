@@ -9,6 +9,10 @@ import java.util.List;
  * <p>Helper class that stores currency data</p>
  */
 public class RateData {
+
+    private RateData() {
+    }
+
     private static List<Currency> currencyList;
 
     static {

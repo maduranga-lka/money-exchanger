@@ -10,24 +10,24 @@ public class Currency {
     public Currency() {
     }
 
-    public Currency(String currency, double buyRate, double sellRate) {
-        this.currency = currency;
+    public Currency(String currencyCode, double buyRate, double sellRate) {
+        this.currencyCode = currencyCode;
         this.buyRate = buyRate;
         this.sellRate = sellRate;
     }
 
-    private String currency;
+    private String currencyCode;
     private double buyRate;
     private double sellRate;
     @JsonIgnore
     private boolean nil;
 
-    public String getCurrency() {
-        return currency;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
     public double getBuyRate() {

@@ -27,7 +27,7 @@ public class ApplicationConfiguration {
 
     @PostConstruct
     private void init() {
-        pageHandlers = new HashSet<ErrorPage>();
+        pageHandlers = new HashSet();
         pageHandlers.add(new ErrorPage(HttpStatus.NOT_FOUND, NOTFOUND_HTML));
         pageHandlers.add(new ErrorPage(HttpStatus.FORBIDDEN, FORBIDDEN_HTML));
     }
