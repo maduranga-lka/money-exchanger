@@ -1,10 +1,10 @@
 # money-exchanger
 
--**Get All Currency Rates** : (GET): /moneyexchanger/exchanges/rates
--**Get Rates for Particular** : Currnecy(GET): /moneyexchanger/exchanges/rates/USD
--**Check Selling Amount(GET)** : /moneyexchanger/exchanges/sell/HKD/200
--**Check Buying Amount(GET)** : /moneyexchanger/exchanges/buy/USD/1
--**Add Exchange Transaction(POST)** : /moneyexchanger/exchanges/transactions/USD/100
+-**Get All Currency Rates** : (GET): /moneyexchanger/exchanges/rates  
+-**Get Rates for Particular** : Currnecy(GET): /moneyexchanger/exchanges/rates/USD  
+-**Check Selling Amount(GET)** : /moneyexchanger/exchanges/sell/HKD/200  
+-**Check Buying Amount(GET)** : /moneyexchanger/exchanges/buy/USD/1  
+-**Add Exchange Transaction(POST)** : /moneyexchanger/exchanges/transactions/USD/100  
 
 Request Sample : 
 {
