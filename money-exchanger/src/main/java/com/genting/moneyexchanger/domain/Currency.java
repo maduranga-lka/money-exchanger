@@ -2,6 +2,9 @@ package com.genting.moneyexchanger.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * <p>This class is for storing basic currency details</p>
+ */
 public class Currency {
 
     public Currency() {
