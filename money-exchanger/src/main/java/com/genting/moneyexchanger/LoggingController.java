@@ -7,15 +7,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoggingController {
+    public static final String EXCHANGER_APPLICATION = "Exchanger application";
+    public static final String TRACE = "TRACE";
+    public static final String DEBUG = "DEBUG";
+    public static final String INFO = "INFO";
+    public static final String WARN = "WARN";
+    public static final String ERROR = "ERROR";
+    public static final String LOGS_URI = "/logs";
     Logger logger = LoggerFactory.getLogger(LoggingController.class);
 
-    @RequestMapping("/logs")
+    @RequestMapping(LOGS_URI)
     public String index() {
-        logger.trace("A TRACE Message");
-        logger.debug("A DEBUG Message");
-        logger.info("An INFO Message");
-        logger.warn("A WARN Message");
-        logger.error("An ERROR Message");
-        return "Exchanger application logs";
+        logger.trace(TRACE);
+        logger.debug(DEBUG);
+        logger.info(INFO);
+        logger.warn(WARN);
+        logger.error(ERROR);
+        return EXCHANGER_APPLICATION;
     }
 }

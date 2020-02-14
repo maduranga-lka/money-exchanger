@@ -5,6 +5,9 @@ import com.genting.moneyexchanger.domain.Currency;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>Helper class that stores currency data</p>
+ */
 public class RateData {
     private static List<Currency> currencyList;
 
