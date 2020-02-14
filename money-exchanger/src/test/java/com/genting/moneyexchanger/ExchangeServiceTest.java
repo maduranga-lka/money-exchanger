@@ -60,7 +60,7 @@ public class ExchangeServiceTest {
 
         double amountToExchange = 1;
         ExchangeRate exchangeRate = exchangeService.findBuyAmountDetailsByCurrencyCode(CURRENCY_CODE_USD, amountToExchange);
-        Assert.assertEquals(1.3392, exchangeRate.getToAmount(), 0);
+        Assert.assertEquals(1.3, exchangeRate.getToAmount(), 0);
         Assert.assertEquals("SGD", exchangeRate.getToCurrency());
     }
 
